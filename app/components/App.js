@@ -1,6 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Profile = require('./Github/Profile');
+var Search = require('./Github/Search');
 
 var App = React.createClass({
   getInitialState : function(){
@@ -62,9 +63,18 @@ var App = React.createClass({
       this.getUserRepos();
   },
 
+  handleFormSubmit: function(username){
+    this.setState({ username: username }, function(){
+      this.getUserData();
+      this.getUserRepos();
+    });
+
+  },
+
   render : function(){
     return (
       <div>
+          <Search onFormSubmit={this.handleFormSubmit}/>
           <Profile userData = {this.state.userData} userRepos= {this.state.userRepos} />
       </div>
     );
