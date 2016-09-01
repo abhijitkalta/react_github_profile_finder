@@ -1,4 +1,5 @@
-var React = require('react')
+var React = require('react');
+var RepoList = require('./RepoList');
 
 var Profile = React.createClass({
     render: function(){
@@ -37,6 +38,9 @@ var Profile = React.createClass({
                     <a className="btn btn-primary" target="_blank" href={this.props.userData.html_url}>Visit Profile</a>
                   </div>
                 </div>
+                <hr />
+                <h3>User Reposiories: </h3>
+                <RepoList userRepos={this.props.userRepos} />
             </div>
           </div>
         </div>

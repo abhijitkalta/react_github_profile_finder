@@ -8,7 +8,7 @@ var App = React.createClass({
         username: 'abhijitkalta' ,
         userData: [],
         userRepos: [],
-        perPage: 5
+        perPage: 10
       }
   },
   getDefaultProps : function(){
@@ -59,12 +59,13 @@ var App = React.createClass({
 
   componentDidMount(){
       this.getUserData();
+      this.getUserRepos();
   },
 
   render : function(){
     return (
       <div>
-          <Profile userData = {this.state.userData}/>
+          <Profile userData = {this.state.userData} userRepos= {this.state.userRepos} />
       </div>
     );
   }
