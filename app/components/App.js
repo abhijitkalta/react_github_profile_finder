@@ -1,5 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var Profile = require('./Github/Profile');
 
 var App = React.createClass({
   getInitialState : function(){
@@ -22,10 +23,48 @@ var App = React.createClass({
     clientSecret : React.PropTypes.string
   },
 
+  //get user data
+  getUserData(){
+      $.ajax({
+        url : 'https://api.github.com/users/' + this.state.username + '?client_id=' + this.props.clientId + '&client_secret=' + this.props.clientSecret ,
+        dataType: 'json',
+        cache: false,
+        success: function(data){
+          this.setState({ userData: data});
+          console.log(data);
+        }.bind(this),
+        error: function(xhr, status, error){
+          this.setState({username: null });
+          alert(err);
+        }.bind(this)
+      });
+  },
+
+// get user repos
+  getUserRepos(){
+      $.ajax({
+        url : 'https://api.github.com/users/' + this.state.username + '/repos?per_page=' + this.state.perPage + '&client_id=' + this.props.clientId + '&client_secret=' + this.props.clientSecret +'&sort=created',
+        dataType: 'json',
+        cache: false,
+        success: function(data){
+          this.setState({ userRepos: data});
+          console.log(data);
+        }.bind(this),
+        error: function(xhr, status, error){
+          this.setState({username: null });
+          alert(err);
+        }.bind(this)
+      });
+  },
+
+  componentDidMount(){
+      this.getUserData();
+  },
+
   render : function(){
     return (
       <div>
-
+          <Profile userData = {this.state.userData}/>
       </div>
     );
   }
