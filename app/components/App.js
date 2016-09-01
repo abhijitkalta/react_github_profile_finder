@@ -2,28 +2,31 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 
 var App = React.createClass({
+  getInitialState : function(){
+      return {
+        username: 'abhijitkalta' ,
+        userData: [],
+        userRepos: [],
+        perPage: 5
+      }
+  },
+  getDefaultProps : function(){
+    return {
+      clientId : '699d5d11b7d8648d4ef1',
+      clientSecret: '44a803a6fcbcd2c1fc07c9a592bef501eae50a72'
+    }
+  },
+
+  propTypes: {
+    clientId : React.PropTypes.string,
+    clientSecret : React.PropTypes.string
+  },
+
   render : function(){
     return (
-      <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Project name</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
+      <div>
+
       </div>
-    </nav>
     );
   }
 });
